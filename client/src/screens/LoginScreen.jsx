@@ -1,35 +1,28 @@
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../rtk/user/userActions";
+import { useEffect } from "react";
+import Error from "../components/Error";
 import HealthCare from "../assets/healthcare.svg";
-import PropTypes from "prop-types";
 
-async function loginUser(credentials) {
-  return fetch("http://localhost:8080/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json());
-}
+const LoginScreen = () => {
+  const { loading, userInfo, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-const LoginScreen = ({ setToken }) => {
-  const [tryAgain, setTryAgain] = useState(false);
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+  const { register, handleSubmit } = useForm();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const token = await loginUser({
-      username,
-      password,
-    });
-    if (token.isauth) {
-      //alert("Welcome!");
-      setToken(token);
-    } else {
-      //alert("Not Welcome");
-      setTryAgain(() => true);
+  const navigate = useNavigate();
+
+  // redirect authenticated user to profile screen
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
     }
+  }, [navigate, userInfo]);
+
+  const submitForm = (data) => {
+    dispatch(userLogin(data));
   };
 
   return (
@@ -41,54 +34,51 @@ const LoginScreen = ({ setToken }) => {
         <h3 className="text-2xl font-bold text-center">
           Login to your account
         </h3>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(submitForm)}>
           <div className="mt-4">
-            <div>
-              <label className="block" for="email">
-                Username
+            {error && <Error>{error}</Error>}
+            <div className="form-group">
+              <label className="block" htmlFor="email">
+                Email
               </label>
               <input
-                type="text"
-                placeholder="Username"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                onChange={(e) => setUserName(e.target.value)}
+                type="email"
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                {...register("email")}
+                required
               />
-              {/* <span className="text-xs tracking-wide text-red-600">
-                Email field is required{" "}
-              </span> */}
             </div>
-            <div className="mt-4">
-              <label className="block">Password</label>
+            <div className="form-group">
+              <label className="block" htmlFor="password">
+                Password
+              </label>
               <input
                 type="password"
-                placeholder="Password"
-                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                onChange={(e) => setPassword(e.target.value)}
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                {...register("password")}
+                required
               />
             </div>
-            <span className="text-xs tracking-wide text-red-600">
-              {tryAgain ? "Username or password incorrect" : " "}
-            </span>
             <div className="flex items-baseline justify-between">
               <button
                 type="submit"
-                className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
+                className="button px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 mb-15"
+                disabled={loading}
               >
                 Login
               </button>
-              {/* <a href="#" className="text-sm text-blue-600 hover:underline">
-                Forgot password?
-              </a> */}
+              <NavLink
+                to="/register"
+                className="text-sm text-blue-600 hover:underline"
+              >
+                OR Register here
+              </NavLink>
             </div>
           </div>
         </form>
       </div>
     </div>
   );
-};
-
-LoginScreen.propTypes = {
-  setToken: PropTypes.func.isRequired,
 };
 
 export default LoginScreen;

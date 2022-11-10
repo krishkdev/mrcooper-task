@@ -56,18 +56,22 @@ module.exports.login = async (req, res) => {
   if (!validPassword) return res.status(400).send("Invalid Passowrd");
 
   //Create and assign JWT token
-  const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET)
-  res.header('auth-token', token).send(token);
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
+    expiresIn: "12h",
+  });
+  res
+    .header("auth-token", token)
+    .send({ _id: user._id, username: user.name, email: user.email, catogery: user.catogery, DOB: user.DOB, token });
   //console.log(email, password);
 };
 
-module.exports.logout =  (req, res) => {
+module.exports.logout = (req, res) => {
   const authHeader = req.headers["authorization"];
-  jwt.sign(authHeader, "", { expiresIn: 1 } , (logout, err) => {
-  if (logout) {
-  res.send({msg : 'You have been Logged Out' });
-  } else {
-  res.send({msg:'Error'});
-  }
+  jwt.sign(authHeader, "", { expiresIn: 1 }, (logout, err) => {
+    if (logout) {
+      res.send({ msg: "You have been Logged Out" });
+    } else {
+      res.send({ msg: "Error" });
+    }
   });
 };
