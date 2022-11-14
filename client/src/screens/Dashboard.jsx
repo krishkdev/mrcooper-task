@@ -5,7 +5,7 @@ import LargeHero from "../components/LargeHero";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileScreen from "./ProfileScreen";
 import { getAge } from "../components/getAge";
-
+import BookAppoint from "../components/BookAppoint";
 
 const Dashboard = () => {
   // const { count } = useSelector((state) => state.counter);
@@ -25,17 +25,22 @@ const Dashboard = () => {
 
   return (
     <div>
-      <LargeHero name={userInfo?.username} catogery={userInfo?.catogery} />
-
-      <a
-        href="#"
-        class="block p-6 m-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-      >
-        <h5 class="text-3xl font-medium text-gray-700">
-          {userInfo.catogery} Details
-        </h5>
-        <ProfileScreen />
-      </a>
+      <LargeHero name={userInfo?.username} catogery={userInfo.catogery === "Patient" ? "Book" : "View"} />
+      {/* <div className="container flex w-full p-5">
+        <div class=" flex-1 w-50 block p-6 m-2 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <h5 class="text-3xl font-medium text-gray-700 dark:text-white">
+            {userInfo.catogery} Details
+          </h5>
+          <ProfileScreen />
+        </div>
+        <div class="flex-1 w-full block p-6 m-2 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <h5 class="text-3xl font-medium text-gray-700 dark:text-white">
+            {userInfo.catogery} Details
+          </h5>
+          <ProfileScreen />
+        </div>
+      </div> */}
+      <BookAppoint />
     </div>
   );
 };

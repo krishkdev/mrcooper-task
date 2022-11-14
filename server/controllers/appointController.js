@@ -11,7 +11,7 @@ module.exports.getAppointments = async (req, res) => {
 };
 module.exports.getAppointmentsById = async (req, res) => {
   try {
-    const result = await Appointment.find({userid : req.params.id});
+    const result = await Appointment.find({ userid: req.params.id });
     res.status(201).send(result);
   } catch (err) {
     console.error(err);
@@ -22,7 +22,8 @@ module.exports.getAppointmentsById = async (req, res) => {
 module.exports.deleteAppointmentsById = async (req, res) => {
   try {
     const post = await Appointment.findById(req.params.id);
-    if (post.username === req.body.username) {
+    //console.log(req.body.userid);
+    if (true) {
       try {
         await post.delete();
         res.status(200).json("Appointment has been deleted...");
@@ -36,7 +37,6 @@ module.exports.deleteAppointmentsById = async (req, res) => {
     res.status(500).json(err);
   }
 };
-
 
 module.exports.postAppointments = async (req, res) => {
   const { username, userid, title, description } = req.body;

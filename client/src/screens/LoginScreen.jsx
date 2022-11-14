@@ -9,9 +9,7 @@ import HealthCare from "../assets/healthcare.svg";
 const LoginScreen = () => {
   const { loading, userInfo, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
   const { register, handleSubmit } = useForm();
-
   const navigate = useNavigate();
 
   // redirect authenticated user to profile screen
