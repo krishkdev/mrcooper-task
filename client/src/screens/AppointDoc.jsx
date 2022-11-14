@@ -5,33 +5,23 @@ import LargeHero from "../components/LargeHero";
 
 const baseURL = "http://localhost:8080";
 
-const Appointments = () => {
+const AppointDoc = () => {
   const [appointments, setAppointments] = React.useState([]);
   const { userInfo } = useSelector((state) => state.user);
 
   React.useEffect(() => {
     axios
-      .get(`${baseURL}/appointments/${userInfo._id}`, {
-        username: userInfo.username,
-      })
+      .get(`${baseURL}/appointments`)
       .then((res) => setAppointments(res.data))
       .catch((err) => console.error(err));
   }, []);
 
-  function handleDelete(id) {
-    axios
-      .delete(`${baseURL}/appointments/${id}`, { user: userInfo._id })
-      .then((res) =>
-        setAppointments(appointments.filter((a_id) => a_id._id !== id))
-      )
-      .catch((err) => console.error(err));
-  }
   return (
     <div className="bg-white dark:bg-gray-900 max-h-full">
-      <LargeHero name={userInfo?.username} catogery= "View" />
+      <LargeHero name={userInfo?.username} catogery="View" />
       <div class="overflow-x-auto relative mt-10 p-10 pb-20">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="py-3 px-6">
                 Desciption
@@ -50,16 +40,18 @@ const Appointments = () => {
           <tbody>
             {appointments.map((appoint, idx) => (
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
                   {appoint.description}
                 </th>
                 <td class="py-4 px-6">{appoint.title}</td>
                 <td class="py-4 px-6">{appoint.username}</td>
                 <td
-                  class="py-4 px-6 text-red-700 cursor-pointer"
-                  onClick={() => handleDelete(appoint._id)}
+                  class="py-4 px-6 text-blue-700 cursor-pointer"
                 >
-                  DELETE
+                  APPROVE
                 </td>
               </tr>
             ))}
@@ -70,4 +62,4 @@ const Appointments = () => {
   );
 };
 
-export default Appointments;
+export default AppointDoc;

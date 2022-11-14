@@ -24,35 +24,35 @@ const LoginScreen = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="px-16 py-6 mt-4 text-left bg-white shadow-lg">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+      <div className="px-16 py-6 mt-4 text-left bg-white rounded shadow-lg dark:bg-gray-800">
         <div className="flex justify-center">
           <img src={HealthCare} alt="health-care" className="w-12 h-15 mb-5" />
         </div>
-        <h3 className="text-2xl font-bold text-center">
+        <h3 className="text-2xl font-bold text-center dark:text-white">
           Login to your account
         </h3>
         <form onSubmit={handleSubmit(submitForm)}>
           <div className="mt-4">
             {error && <Error>{error}</Error>}
             <div className="form-group">
-              <label className="block" htmlFor="email">
+              <label className="block dark:text-gray-300" htmlFor="email">
                 Email
               </label>
               <input
                 type="email"
-                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-700"
                 {...register("email")}
                 required
               />
             </div>
             <div className="form-group">
-              <label className="block" htmlFor="password">
+              <label className="block dark:text-gray-300" htmlFor="password">
                 Password
               </label>
               <input
                 type="password"
-                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-700"
                 {...register("password")}
                 required
               />

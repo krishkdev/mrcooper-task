@@ -9,6 +9,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ProtectedRoute from "./routing/ProtectedRoute";
 import NavBar from "./components/NavBar";
 import Appointments from "./screens/Appointments";
+import AppointDoc from "./screens/AppointDoc";
 
 function App() {
   // const [token, setToken] = useState();
@@ -29,6 +30,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="pref" element={<Preferences />} />
             <Route path="appoint" element={<Appointments />} />
+            <Route path="appointdoc" element={<AppointDoc />} />
           </Route>
 
         </Routes>

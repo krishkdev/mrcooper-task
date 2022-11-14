@@ -37,12 +37,12 @@ const RegisterScreen = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="px-16 py-6 mt-4 text-left bg-white shadow-lg">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+      <div className="px-16 py-6 mt-4 text-left rounded bg-white shadow-lg dark:bg-gray-800">
         <div className="flex justify-center">
           <img src={HealthCare} alt="health-care" className="w-12 h-15 mb-5" />
         </div>
-        <h3 className="text-2xl font-bold text-center">
+        <h3 className="text-2xl font-bold text-center dark:text-white">
           Login to your account
         </h3>
         <form onSubmit={handleSubmit(submitForm)}>
@@ -50,68 +50,68 @@ const RegisterScreen = () => {
             {error && <Error>{error}</Error>}
             {customError && <Error>{customError}</Error>}
             <div className="form-group">
-              <label className="block" htmlFor="username">
+              <label className="block dark:text-gray-300" htmlFor="username">
                 Full Name
               </label>
               <input
                 type="text"
-                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-white"
                 {...register("name")}
                 required
               />
             </div>
             <div className="form-group">
-              <label className="block" htmlFor="email">
+              <label className="block dark:text-gray-300" htmlFor="email">
                 Email
               </label>
               <input
                 type="email"
-                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-white"
                 {...register("email")}
                 required
               />
             </div>
             <div className="form-group">
-              <label className="block" htmlFor="password">
+              <label className="block dark:text-gray-300" htmlFor="password">
                 Password
               </label>
               <input
                 type="password"
-                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-white"
                 {...register("password")}
                 required
               />
             </div>
             <div className="form-group">
-              <label className="block" htmlFor="email">
+              <label className="block dark:text-gray-300" htmlFor="email">
                 Confirm Password
               </label>
               <input
                 type="password"
-                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-white"
                 {...register("confirmPassword")}
                 required
               />
             </div>
             {/* <div className="form-group">
-              <label className="block" htmlFor="DOB">
+              <label className="block dark:text-gray-300" htmlFor="DOB">
                 Catogery
               </label>
               <input
                 type="text"
-                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-white"
                 {...register("catogery")}
                 required
               />
             </div> */}
             <div className="form-group">
               <div>
-                <label class="block" for="grid-state">
+                <label class="block dark:text-gray-300" for="grid-state">
                   Catogery
                 </label>
                 <div class="relative">
                   <select
-                    class="block appearance-none w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                    class="block appearance-none w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-white"
                     id="grid-state"
                     {...register("catogery")}
                   >
@@ -131,12 +131,12 @@ const RegisterScreen = () => {
               </div>
             </div>
             <div className="form-group">
-              <label className="block" htmlFor="DOB">
+              <label className="block dark:text-gray-300" htmlFor="DOB">
                 Date of birth
               </label>
               <input
                 type="text"
-                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                className="form-input w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-white"
                 {...register("DOB")}
                 required
               />
