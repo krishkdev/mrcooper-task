@@ -5,27 +5,17 @@ import LargeHero from "../components/LargeHero";
 
 const baseURL = "http://localhost:8080";
 
-const Appointments = () => {
+const AppointPat = () => {
   const [appointments, setAppointments] = React.useState([]);
   const { userInfo } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    if(userInfo.catogery === "Patient") {
-      axios
+    axios
       .get(`${baseURL}/appointments/${userInfo._id}`, {
         username: userInfo.username,
       })
       .then((res) => setAppointments(res.data))
       .catch((err) => console.error(err));
-    }
-    else if (userInfo.catogery === "Doctor") {
-      axios
-      .get(`${baseURL}/appointments`, {
-        username: userInfo.username,
-      })
-      .then((res) => setAppointments(res.data))
-      .catch((err) => console.error(err));
-    }
   }, []);
 
   function handleDelete(id) {
@@ -65,21 +55,12 @@ const Appointments = () => {
                 </th>
                 <td class="py-4 px-6">{appoint.title}</td>
                 <td class="py-4 px-6">{appoint.username}</td>
-                {userInfo.catogery === "Patient" ? (
-                  <td
+                <td
                   class="py-4 px-6 text-red-700 cursor-pointer"
                   onClick={() => handleDelete(appoint._id)}
                 >
                   DELETE
                 </td>
-                ):(
-                  <td
-                  class="py-4 px-6 text-blue-400 cursor-pointer"
-                  onClick={() => handleDelete(appoint._id)}
-                >
-                  APPOINT
-                </td>
-                )}
               </tr>
             ))}
           </tbody>
@@ -89,4 +70,4 @@ const Appointments = () => {
   );
 };
 
-export default Appointments;
+export default AppointPat;

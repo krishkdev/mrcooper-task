@@ -10,11 +10,11 @@ const NavBar = () => {
   const { userInfo } = useSelector((state) => state.user);
   const location = useLocation();
   const dispatch = useDispatch();
-  const appointLink = userInfo.catogery === "Patient" ? "appoint": "appointdoc"
+  //const appointLink = userInfo.catogery === "Patient" ? "appoint": "appointdoc"
 
   const arrayLinksDoc = [
     { name: "Dashboard", url: "/" },
-    { name: "Appointments", url: appointLink },
+    { name: "Appointments", url: "appoint" },
     { name: "Profile", url: "user-profile" },
     // { name: "History", url: "/" },
   ];

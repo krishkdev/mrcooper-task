@@ -10,13 +10,9 @@ import ProtectedRoute from "./routing/ProtectedRoute";
 import NavBar from "./components/NavBar";
 import Appointments from "./screens/Appointments";
 import AppointDoc from "./screens/AppointDoc";
+import AppointPat from "./screens/AppointPat";
 
 function App() {
-  // const [token, setToken] = useState();
-
-  // if (!token) {
-  //   return <LoginScreen setToken={setToken} />;
-  // }
   return (
     <div className="wrapper">
       <BrowserRouter>
@@ -31,6 +27,7 @@ function App() {
             <Route path="pref" element={<Preferences />} />
             <Route path="appoint" element={<Appointments />} />
             <Route path="appointdoc" element={<AppointDoc />} />
+            <Route path="appointpat" element={<AppointPat />} />
           </Route>
 
         </Routes>
